@@ -1,0 +1,13 @@
+---
+- name: Include OS-specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Install common apt packages
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - python-apt
+    - git-core
+  sudo: yes
+
+- name: Install Java
+  include: java.yml
