@@ -6,4 +6,6 @@ java:
     - oracle-java7-set-default
   openjdk:
     - openjdk-7-jre-headless
+elasticsearch:
+  version: 1.1
 

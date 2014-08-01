@@ -1,0 +1,24 @@
+---
+- name: ES apt GPG key
+  apt_key:
+    url='http://packages.elasticsearch.org/GPG-KEY-elasticsearch'
+  when: ansible_os_family == 'Debian'
+  sudo: yes
+
+- name: ES apt repo
+  apt_repository:
+    repo="deb http://packages.elasticsearch.org/elasticsearch/{{ elasticsearch.version }}/{{ ansible_os_family|lower }} stable main"
+    update_cache=yes
+  sudo: yes
+
+- name: Install ES apt packages
+  apt: pkg={{ item }} update_cache=yes state=present
+  with_items:
+   - openntpd
+   - elasticsearch
+  sudo: yes
+  notify: Restart elasticsearch
+
+- name: Curator PIP package
+  pip: name=elasticsearch-curator state=latest
+  sudo: yes

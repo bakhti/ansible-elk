@@ -6,8 +6,13 @@
   apt: pkg={{ item }} state=latest
   with_items:
     - python-apt
+    - python-pycurl
+    - python-pip
     - git-core
   sudo: yes
 
 - name: Install Java
   include: java.yml
+
+- name: Install Elasticsearch
+  include: elasticsearch.yml
