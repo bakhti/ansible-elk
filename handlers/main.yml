@@ -5,6 +5,12 @@
     enabled=yes state=restarted
   sudo: yes
 
+- name: Restart logstash
+  service:
+    name=logstash
+    enabled=yes state=restarted
+  sudo: yes
+
 - name: Restart monit
   service:
     name=monit

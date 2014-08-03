@@ -6,6 +6,7 @@ elk_common_packages:
     - python-pip
     - monit
     - git-core
+    - jq
 elk_java:
   flavor: oracle
   oracle:
@@ -18,4 +19,6 @@ elk_elasticsearch:
   pid_file: /var/run/elasticsearch.pid
   http:
     port: 9200
-
+elk_logstash:
+  version: 1.4
+  pid_file: /var/run/logstash.pid

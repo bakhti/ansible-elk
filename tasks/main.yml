@@ -18,5 +18,14 @@
 - name: Install Java
   include: java.yml
 
+- name: ES apt GPG key
+  apt_key:
+    url='http://packages.elasticsearch.org/GPG-KEY-elasticsearch'
+  when: ansible_os_family == 'Debian'
+  sudo: yes
+
 - name: Install Elasticsearch
   include: elasticsearch.yml
+
+- name: Install Logstash
+  include: logstash.yml
