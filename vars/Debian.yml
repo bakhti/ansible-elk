@@ -1,11 +1,21 @@
 ---
-java:
+elk_common_packages:
+    - openntpd
+    - python-apt
+    - python-pycurl
+    - python-pip
+    - monit
+    - git-core
+elk_java:
   flavor: oracle
   oracle:
     - oracle-java7-installer
     - oracle-java7-set-default
   openjdk:
     - openjdk-7-jre-headless
-elasticsearch:
+elk_elasticsearch:
   version: 1.1
+  pid_file: /var/run/elasticsearch.pid
+  http:
+    port: 9200
 

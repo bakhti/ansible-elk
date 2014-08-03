@@ -2,6 +2,11 @@
 - name: Restart elasticsearch
   service:
     name=elasticsearch
-    enabled=yes
-    state=restarted
+    enabled=yes state=restarted
+  sudo: yes
+
+- name: Restart monit
+  service:
+    name=monit
+    enabled=yes state=restarted
   sudo: yes

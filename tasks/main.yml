@@ -4,12 +4,16 @@
 
 - name: Install common apt packages
   apt: pkg={{ item }} state=latest
-  with_items:
-    - python-apt
-    - python-pycurl
-    - python-pip
-    - git-core
+  with_items: elk_common_packages
   sudo: yes
+
+- name: Monit conf file
+  copy:
+    src=monitrc
+    dest=/etc/monit/monitrc
+    owner=root group=root mode=600
+  sudo: yes
+  notify: Restart monit
 
 - name: Install Java
   include: java.yml

@@ -3,7 +3,7 @@
   apt_repository:
     repo='ppa:webupd8team/java'
     update_cache=yes
-  when: java.flavor == 'oracle' and ansible_distribution == 'Ubuntu'
+  when: elk_java.flavor == 'oracle' and ansible_distribution == 'Ubuntu'
   sudo: yes
   register: webupd8team
 
@@ -15,5 +15,5 @@
 
 - name: Java apt packages
   apt: pkg={{ item }} update_cache=yes state=present
-  with_items: java.{{ java.flavor }}
+  with_items: elk_java.{{ elk_java.flavor }}
   sudo: yes
