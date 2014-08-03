@@ -5,13 +5,20 @@
     update_cache=yes
   when: elk_java.flavor == 'oracle' and ansible_distribution == 'Ubuntu'
   sudo: yes
+
+- name: Check Oracle license
+  shell:
+    /usr/bin/debconf-show oracle-java7-installer |awk '/accepted-oracle-license/{print $NF}'
+  sudo: yes
+  changed_when: False
+  when: elk_java.flavor == 'oracle' and ansible_distribution == 'Ubuntu'
   register: webupd8team
 
 - name: Accept Oracle license
   shell:
     echo 'oracle-java7-installer shared/accepted-oracle-license-v1-1 select true' | /usr/bin/debconf-set-selections
   sudo: yes
-  when: webupd8team|changed
+  when: webupd8team.stdout != 'true'
 
 - name: Java apt packages
   apt: pkg={{ item }} update_cache=yes state=present
