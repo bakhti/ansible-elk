@@ -3,7 +3,7 @@
   git:
     repo=https://github.com/elasticsearch/kibana.git
     dest={{ elk_kibana.path }}
-    version={{ elk_kibana.version }}
+    version={{ elk_kibana.version }} update=no
   sudo: yes
 
 - name: CSV export patch
