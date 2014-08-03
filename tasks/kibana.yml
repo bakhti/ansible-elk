@@ -1,0 +1,53 @@
+---
+- name: Get Kibana source files
+  git:
+    repo=https://github.com/elasticsearch/kibana.git
+    dest={{ elk_kibana.path }}
+    version={{ elk_kibana.version }}
+  sudo: yes
+
+- name: CSV export patch
+  shell:
+    chdir={{ elk_kibana.path }}
+    curl -s https://github.com/elasticsearch/kibana/pull/585.diff |patch -p1 --forward --silent
+  when: elk_kibana.csv_patch == 'yes'
+  sudo: yes
+  ignore_errors: yes
+
+- name: Modify config.js
+  lineinfile:
+    dest={{ elk_kibana.path }}/src/config.js
+    regexp='^(\s*elasticsearch:.*):9200(.*)$'
+    line='\1:80\2'
+    backrefs=yes
+  sudo: yes
+
+- name: App files ownership
+  file:
+    path={{ elk_kibana.path }}
+    state=directory
+    owner={{ elk_nginx.user }} group={{ elk_nginx.user }} recurse=yes
+  sudo: yes
+
+- name: Generate kibana htpassword
+  shell:
+    chdir=/etc/nginx/conf.d
+    creates=/etc/nginx/conf.d/.kibana.htpasswd
+    echo "{{ elk_kibana.user }}:$(openssl passwd -crypt {{ elk_kibana.password }}):kibana" |tee .kibana.htpasswd
+  sudo: yes
+  register: http_pass_gen
+
+- name: Kibana htpassword file permissions
+  file:
+    path=/etc/nginx/conf.d/.kibana.htpasswd
+    owner={{ elk_nginx.user }} group=root mode=400
+  sudo: yes
+  when: http_pass_gen|changed
+
+- name: Nginx config file
+  template:
+    src=kibana-default.j2
+    dest=/etc/nginx/conf.d/kibana.conf
+    owner=root group=root mode=644
+  sudo: yes
+  notify: Restart nginx

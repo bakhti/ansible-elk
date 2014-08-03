@@ -16,3 +16,9 @@
     name=monit
     enabled=yes state=restarted
   sudo: yes
+
+- name: Restart nginx
+  service:
+    name=nginx
+    enabled=yes state=restarted
+  sudo: yes

@@ -29,3 +29,9 @@
 
 - name: Install Logstash
   include: logstash.yml
+
+- name: Install Nginx
+  include: nginx.yml
+
+- name: Install Kibana
+  include: kibana.yml

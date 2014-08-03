@@ -1,0 +1,35 @@
+---
+- name: Add nginx apt key
+  apt_key:
+    url='http://nginx.org/keys/nginx_signing.key'
+  when: ansible_os_family == 'Debian'
+  sudo: yes
+
+- name: Add nginx apt repo
+  apt_repository:
+    repo="deb http://nginx.org/packages/{{ ansible_lsb.id|lower }}/ {{ ansible_lsb.codename }} nginx"
+    update_cache=yes
+  when: ansible_os_family == 'Debian'
+  sudo: yes
+  
+- name: Install Nginx apt package
+  apt: pkg=nginx state=latest
+  when: ansible_os_family == 'Debian'
+  sudo: yes
+
+- name: Disable default servers
+  file:
+    path=/etc/nginx/conf.d/{{ item.path }}
+    state=absent
+  with_items:
+    - { path: 'default.conf' }
+    - { path: 'example_ssl.conf' }
+  sudo: yes
+
+- name: Make monit to look after nginx
+  template:
+    src=nginx.monitrc.conf.j2
+    dest=/etc/monit/conf.d/nginx.monitrc.conf
+    owner=root group=root mode=644
+  sudo: yes
+  notify: Restart monit

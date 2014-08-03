@@ -22,3 +22,13 @@ elk_elasticsearch:
 elk_logstash:
   version: 1.4
   pid_file: /var/run/logstash.pid
+elk_kibana:
+  version: v3.0.1
+  path: /var/www/kibana
+  user: kibana
+  password: kibana
+  allowed_addresses:
+    - 127.0.0.1
+  csv_patch: no
+elk_nginx:
+  user: nginx
