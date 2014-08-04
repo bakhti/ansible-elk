@@ -1,0 +1,34 @@
+---
+elk_common_packages:
+    - openntpd
+    - python-apt
+    - python-pycurl
+    - python-pip
+    - monit
+    - git-core
+    - jq
+elk_java:
+  flavor: oracle
+  oracle:
+    - oracle-java7-installer
+    - oracle-java7-set-default
+  openjdk:
+    - openjdk-7-jre-headless
+elk_elasticsearch:
+  version: 1.1
+  pid_file: /var/run/elasticsearch.pid
+  http:
+    port: 9200
+elk_logstash:
+  version: 1.4
+  pid_file: /var/run/logstash.pid
+elk_kibana:
+  version: v3.0.1
+  path: /var/www/kibana
+  user: kibana
+  password: kibana
+  allowed_addresses:
+    - 127.0.0.1
+  csv_patch: no
+elk_nginx:
+  user: nginx

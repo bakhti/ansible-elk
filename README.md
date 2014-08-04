@@ -6,7 +6,7 @@ Setup [Elasticsearch ELK Stack](http://www.elasticsearch.org/overview/) on Debia
 
 ## License
 
-MIT / BSD
+MIT
 
 ## Author Information
 

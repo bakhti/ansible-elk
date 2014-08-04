@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: bakhti
+  company: Brightgrove
+  description: Setup Elasticsearch ELK Stack on Debian/Ubuntu linux servers
+  license: MIT
+  min_ansible_version: 1.4
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+  categories:
+  - monitoring
+  - system
+  - web
+
+dependencies: []
