@@ -22,6 +22,8 @@ elk_elasticsearch:
 elk_logstash:
   version: 1.4
   pid_file: /var/run/logstash.pid
+  configs:
+    - { src: logstash-simple.conf.j2, dest: simple.conf }
 elk_kibana:
   version: v3.0.1
   path: /var/www/kibana

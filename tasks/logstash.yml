@@ -16,10 +16,11 @@
   notify: Restart logstash
 
 - name: Logstash conf file
-  copy:
-    src=logstash-simple.conf
-    dest=/etc/logstash/conf.d/logstash-simple.conf
+  template:
+    src={{ item.src }}
+    dest=/etc/logstash/conf.d/{{ item.dest }}
     owner=root group=root mode=644
+  with_items: elk_logstash.configs
   sudo: yes
   notify: Restart logstash
 

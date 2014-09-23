@@ -7,7 +7,7 @@
   sudo: yes
 
 - name: Install ES apt packages
-  apt: pkg=elasticsearch update_cache=yes state=present
+  apt: pkg=elasticsearch update_cache=yes state=latest
   sudo: yes
   when: ansible_os_family == 'Debian'
   notify: Restart elasticsearch
