@@ -29,6 +29,7 @@
     path={{ elk_kibana.path }}
     state=directory
     owner={{ elk_nginx.user }} group={{ elk_nginx.user }} recurse=yes
+  changed_when: False
   sudo: yes
 
 - name: Generate kibana htpassword
