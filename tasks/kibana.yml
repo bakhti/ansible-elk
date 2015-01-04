@@ -4,6 +4,7 @@
     repo=https://github.com/elasticsearch/kibana.git
     dest={{ elk_kibana.path }}
     version={{ elk_kibana.version }} update=yes
+  changed_when: False
   sudo: yes
 
 - name: CSV export patch
@@ -20,6 +21,7 @@
     regexp='^(\s*elasticsearch:.*):9200(.*)$'
     line='\1:80\2'
     backrefs=yes
+  changed_when: False
   sudo: yes
 
 - name: App files ownership
