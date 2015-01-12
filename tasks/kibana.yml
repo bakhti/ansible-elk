@@ -5,6 +5,7 @@
     url=https://download.elasticsearch.org/kibana/kibana/kibana-{{ elk_kibana.version }}.tar.gz
     owner={{ elk_nginx.user }} group={{ elk_nginx.user }}
   sudo: yes
+  register: new_archive_downloaded
 
 - name: Kibana archive uncompressed
   unarchive:
@@ -12,6 +13,7 @@
     dest=/opt copy=no
     owner={{ elk_nginx.user }} group={{ elk_nginx.user }}
   sudo: yes
+  when: new_archive_downloaded|changed
 
 - name: Uncompressed Kibana linked to path
   file:
