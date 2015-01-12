@@ -39,6 +39,6 @@ script:
   # Make sure Kibana is accessible
   - >
     curl -s http://localhost:80
-    | grep -q 'You must enable javascript to use Kibana'
+    | grep -q 'KIBANA_VERSION'
     && (echo 'Kibana is accessible: pass' && exit 0)
     || (echo 'Kibana is accessible: fail' && exit 1)
