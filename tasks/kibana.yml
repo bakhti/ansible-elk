@@ -1,30 +1,26 @@
 ---
-- name: Get Kibana source files
-  git:
-    repo=https://github.com/elasticsearch/kibana.git
-    dest={{ elk_kibana.path }}
-    version={{ elk_kibana.version }} update=yes
-  changed_when: False
+- name: Kibana archive available
+  get_url:
+    dest=/opt
+    url=https://download.elasticsearch.org/kibana/kibana/kibana-{{ elk_kibana.version }}.tar.gz
+    owner={{ elk_nginx.user }} group={{ elk_nginx.user }}
   sudo: yes
 
-- name: CSV export patch
-  shell:
-    chdir={{ elk_kibana.path }}
-    curl -s https://github.com/elasticsearch/kibana/pull/585.diff |patch -p1 --forward --silent
-  when: elk_kibana.csv_patch == 'yes'
-  sudo: yes
-  ignore_errors: yes
-
-- name: Modify config.js
-  lineinfile:
-    dest={{ elk_kibana.path }}/src/config.js
-    regexp='^(\s*elasticsearch:.*):9200(.*)$'
-    line='\1:80\2'
-    backrefs=yes
-  changed_when: False
+- name: Kibana archive uncompressed
+  unarchive:
+    src=/opt/kibana-{{ elk_kibana.version }}.tar.gz
+    dest=/opt copy=no
+    owner={{ elk_nginx.user }} group={{ elk_nginx.user }}
   sudo: yes
 
-- name: App files ownership
+- name: Uncompressed Kibana linked to path
+  file:
+    src=/opt/kibana-{{ elk_kibana.version }}
+    path={{ elk_kibana.path }} state=link
+    owner={{ elk_nginx.user }} group={{ elk_nginx.user }}
+  sudo: yes
+
+- name: Kibana files ownership
   file:
     path={{ elk_kibana.path }}
     state=directory
