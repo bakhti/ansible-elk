@@ -39,9 +39,9 @@
 - name: Generate kibana htpassword
   shell:
     echo "{{ elk_kibana.user }}:$(openssl passwd -crypt {{ elk_kibana.password }}):kibana" |tee .kibana.htpasswd
-    args:
-      chdir=/etc/nginx/conf.d
-      creates=/etc/nginx/conf.d/.kibana.htpasswd
+  args:
+    chdir: /etc/nginx/conf.d
+    creates: /etc/nginx/conf.d/.kibana.htpasswd
   sudo: yes
   register: http_pass_gen
 

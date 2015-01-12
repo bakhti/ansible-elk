@@ -33,4 +33,4 @@
   supervisorctl:
     name=kibana
     state=restarted
-  sudp: yes
+  sudo: yes
