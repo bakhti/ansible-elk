@@ -28,11 +28,20 @@
   changed_when: False
   sudo: yes
 
+- name: Supervisor config file
+  template:
+    src=kibana-supervisor.j2
+    dest=/etc/supervisor/conf.d/kibana.conf
+    owner=root group=root mode=644
+  sudo: yes
+  notify: Restart supervisor
+
 - name: Generate kibana htpassword
   shell:
-    chdir=/etc/nginx/conf.d
-    creates=/etc/nginx/conf.d/.kibana.htpasswd
     echo "{{ elk_kibana.user }}:$(openssl passwd -crypt {{ elk_kibana.password }}):kibana" |tee .kibana.htpasswd
+    args:
+      chdir=/etc/nginx/conf.d
+      creates=/etc/nginx/conf.d/.kibana.htpasswd
   sudo: yes
   register: http_pass_gen
 
