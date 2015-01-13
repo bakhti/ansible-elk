@@ -1,12 +1,4 @@
 ---
-elk_common_packages:
-    - openntpd
-    - python-apt
-    - python-pycurl
-    - python-pip
-    - monit
-    - git-core
-    - jq
 elk_java:
   flavor: oracle
   oracle:
@@ -15,7 +7,7 @@ elk_java:
   openjdk:
     - openjdk-7-jre-headless
 elk_elasticsearch:
-  version: 1.1
+  version: 1.4
   pid_file: /var/run/elasticsearch.pid
   http:
     port: 9200
@@ -25,12 +17,12 @@ elk_logstash:
   configs:
     - { src: logstash-simple.conf.j2, dest: simple.conf }
 elk_kibana:
-  version: v3.0.1
-  path: /var/www/kibana
+  version: 4.0.0-beta3
+  path: /opt/kibana
+  port: 5601
   user: kibana
   password: kibana
   allowed_addresses:
     - 127.0.0.1
-  csv_patch: no
 elk_nginx:
   user: nginx
