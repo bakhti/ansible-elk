@@ -24,7 +24,7 @@
 
 - name: Kibana files ownership
   file:
-    path={{ elk_kibana.path }}
+    path=/opt/kibana-{{ elk_kibana.version }}
     state=directory
     owner={{ elk_nginx.user }} group={{ elk_nginx.user }} recurse=yes
   changed_when: False
