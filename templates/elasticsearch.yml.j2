@@ -6,6 +6,10 @@
 # https://github.com/elasticsearch/elasticsearch/blob/master/config/elasticsearch.yml
 #
 
+############################## Scripting ######################################
+
+script.groovy.sandbox.enabled: true
+
 ############################## Network And HTTP ###############################
 
 {% if elk_elasticsearch.http.port is defined %}
