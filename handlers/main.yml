@@ -1,14 +1,14 @@
 ---
 - name: Restart elasticsearch
-  service:
+  monit:
     name=elasticsearch
-    enabled=yes state=restarted
+    state=restarted
   sudo: yes
 
 - name: Restart logstash
-  service:
+  monit:
     name=logstash
-    enabled=yes state=restarted
+    state=restarted
   sudo: yes
 
 - name: Restart monit
@@ -18,9 +18,9 @@
   sudo: yes
 
 - name: Restart nginx
-  service:
+  monit:
     name=nginx
-    enabled=yes state=restarted
+    state=restarted
   sudo: yes
 
 - name: Restart supervisor
