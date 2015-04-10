@@ -1,5 +1,5 @@
 server {
-  listen 80;
+  listen {{ elk_nginx.port }};
   server_name kibana;
   client_max_body_size 50M;
 
