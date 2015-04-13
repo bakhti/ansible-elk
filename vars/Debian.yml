@@ -15,5 +15,3 @@ elk_java:
     - oracle-java7-set-default
   openjdk:
     - openjdk-7-jre-headless
-elk_nginx:
-  user: nginx

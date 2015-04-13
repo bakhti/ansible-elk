@@ -2,7 +2,7 @@
 - name: Kibana archive available
   get_url:
     dest=/opt
-    url=https://download.elasticsearch.org/kibana/kibana/kibana-{{ elk_kibana.version }}.tar.gz
+    url=https://download.elastic.co/kibana/kibana/kibana-{{ elk_kibana.version }}.tar.gz
     owner={{ elk_nginx.user }} group={{ elk_nginx.user }}
   sudo: yes
   register: new_archive_downloaded
@@ -53,7 +53,7 @@
     owner={{ elk_nginx.user }} group=root mode=400
   sudo: yes
   when: http_pass_gen|changed
-
+    
 - name: Nginx config file
   template:
     src=kibana-default.j2
