@@ -6,16 +6,20 @@ elk_java:
     - oracle-java7-set-default
   openjdk:
     - openjdk-7-jre-headless
+
 elk_elasticsearch:
   version: 1.4
   pid_file: /var/run/elasticsearch.pid
   http:
     port: 9200
+
 elk_logstash:
   version: 1.4
   pid_file: /var/run/logstash.pid
   configs:
     - { src: logstash-simple.conf.j2, dest: simple.conf }
+  patterns: [] # optional; follows same format as `configs`
+
 elk_kibana:
   version: 4.0.2-linux-x64
   path: /opt/kibana
@@ -28,4 +32,3 @@ elk_kibana:
 elk_nginx:
   port: 80
   user: nginx
-

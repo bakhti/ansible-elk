@@ -24,6 +24,16 @@
   sudo: yes
   notify: Restart logstash
 
+- name: Logstash pattern files
+  template:
+    src={{ item.src }}
+    dest=/opt/logstash/patterns/{{ item.dest }}
+    owner=root group=root mode=644
+  with_items: elk_logstash.patterns
+  sudo: yes
+  when: elk_logstash.patterns is defined
+  notify: Restart logstash
+
 - name: Make monit to look after Logstash
   template:
     src=logstash.monitrc.conf.j2
