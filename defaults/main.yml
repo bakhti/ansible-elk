@@ -24,8 +24,8 @@ elk_kibana:
   version: 4.0.2-linux-x64
   path: /opt/kibana
   port: 5601
-  user: kibana
-  password: kibana
+  user: kibana # optional; if unset, kibana does not require authentication
+  password: kibana # optional; if unset, kibana does not require authentication
   allowed_addresses:
     - 127.0.0.1
 
