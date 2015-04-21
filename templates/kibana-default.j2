@@ -28,8 +28,10 @@ server {
 {% for item in elk_kibana.allowed_addresses %}
     allow {{ item }};
 {% endfor %}
+{% if elk_kibana.user is defined and elk_kibana.password is defined %}
     deny all;
     auth_basic "Authentication Required";
     auth_basic_user_file conf.d/.kibana.htpasswd;
+{% endif %}
   }
 }
