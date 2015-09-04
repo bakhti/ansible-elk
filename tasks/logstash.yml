@@ -1,7 +1,7 @@
 ---
 - name: Logstash apt repo
   apt_repository:
-    repo="deb http://packages.elasticsearch.org/logstash/{{ elk_logstash.version }}/{{ ansible_os_family|lower }} stable main"
+    repo="deb http://packages.elastic.co/logstash/{{ elk_logstash.version }}/{{ ansible_os_family|lower }} stable main"
     update_cache=yes
   when: ansible_os_family == 'Debian'
   sudo: yes

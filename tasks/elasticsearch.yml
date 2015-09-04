@@ -1,7 +1,7 @@
 ---
 - name: ES apt repo
   apt_repository:
-    repo="deb http://packages.elasticsearch.org/elasticsearch/{{ elk_elasticsearch.version }}/{{ ansible_os_family|lower }} stable main"
+    repo="deb http://packages.elastic.co/elasticsearch/{{ elk_elasticsearch.version }}/{{ ansible_os_family|lower }} stable main"
     update_cache=yes
   when: ansible_os_family == 'Debian'
   sudo: yes
