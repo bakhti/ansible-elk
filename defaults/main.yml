@@ -1,6 +1,6 @@
 ---
 elk_java:
-  flavor: oracle
+  flavor: openjdk
   oracle:
     - oracle-java7-installer
     - oracle-java7-set-default
