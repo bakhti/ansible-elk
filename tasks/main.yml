@@ -20,7 +20,7 @@
 
 - name: ES apt GPG key
   apt_key:
-    url='http://packages.elasticsearch.org/GPG-KEY-elasticsearch'
+    url='http://packages.elastic.co/GPG-KEY-elasticsearch'
   when: ansible_os_family == 'Debian'
   sudo: yes
 
