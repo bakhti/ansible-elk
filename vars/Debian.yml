@@ -7,9 +7,8 @@ elk_common_packages:
     - supervisor
     - monit
     - git-core
-    - jq
 elk_java:
-  flavor: oracle
+  flavor: openjdk
   oracle:
     - oracle-java7-installer
     - oracle-java7-set-default
