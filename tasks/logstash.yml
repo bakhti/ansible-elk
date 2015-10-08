@@ -10,7 +10,6 @@
   apt: pkg={{ item }} update_cache=yes state=present
   with_items:
    - logstash
-   - logstash-contrib
   sudo: yes
   when: ansible_os_family == 'Debian'
   notify: Restart logstash

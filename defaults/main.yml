@@ -8,13 +8,13 @@ elk_java:
     - openjdk-7-jre-headless
 
 elk_elasticsearch:
-  version: 1.4
+  version: 1.7
   pid_file: /var/run/elasticsearch.pid
   http:
     port: 9200
 
 elk_logstash:
-  version: 1.4
+  version: 1.5
   pid_file: /var/run/logstash.pid
   configs:
     - { src: logstash-simple.conf.j2, dest: simple.conf }
