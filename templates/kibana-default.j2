@@ -9,7 +9,7 @@ server {
   location / {
 
     # Pass requests to Kibana
-    proxy_pass http://127.0.0.1:{{ elk_kibana.port}}/;
+    proxy_pass http://127.0.0.1:{{ elk_kibana.port }}/;
     proxy_redirect off;
     proxy_buffering off;
 

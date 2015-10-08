@@ -36,9 +36,23 @@ script:
     && (echo 'Java is installed: pass' && exit 0)
     || (echo 'Java is installed: fail' && exit 1)
 
+  # Make sure Elasticsearch is up
+  - >
+    curl -s http://localhost:9200
+    | grep -q 'You Know, for Search'
+    && (echo 'Elasticsearch is responding: pass' && exit 0)
+    || (echo 'Elasticsearch is responding: fail' && exit 1)
+
   # Make sure Kibana is accessible
   - >
-    curl -s http://localhost:80
+    curl -s http://localhost:5601
     | grep -q 'KIBANA_VERSION'
     && (echo 'Kibana is accessible: pass' && exit 0)
     || (echo 'Kibana is accessible: fail' && exit 1)
+
+  # Make sure nginx is proxifying Kibana requests
+  - >
+    curl -s http://localhost:80
+    | grep -q 'KIBANA_VERSION'
+    && (echo 'Proxy to Kibana: pass' && exit 0)
+    || (echo 'Proxy to Kibana: fail' && exit 1)
