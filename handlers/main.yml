@@ -5,6 +5,12 @@
     enabled=yes state=restarted
   sudo: yes
 
+- name: Restart supervisor
+  service:
+    name=supervisor
+    enabled=yes state=restarted
+  sudo: yes
+
 - name: Restart elasticsearch
   monit:
     name=elasticsearch
@@ -21,12 +27,6 @@
   monit:
     name=nginx
     state=restarted
-  sudo: yes
-
-- name: Restart supervisor
-  service:
-    name=supervisor
-    enabled=yes state=restarted
   sudo: yes
 
 - name: Restart kibana
