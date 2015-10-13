@@ -9,7 +9,7 @@ elk_java:
 
 elk_elasticsearch:
   version: 1.7
-  pid_file: /var/run/elasticsearch.pid
+  pid_file: /var/run/elasticsearch/elasticsearch.pid
   http:
     port: 9200
 
