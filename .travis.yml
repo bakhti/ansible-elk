@@ -46,13 +46,13 @@ script:
   # Make sure Kibana is accessible
   - >
     curl -s http://localhost:5601/app/kibana
-    | grep -q 'KIBANA_VERSION'
+    | grep -q 'the kibana you know and love'
     && (echo 'Kibana is accessible: pass' && exit 0)
     || (echo 'Kibana is accessible: fail' && exit 1)
 
   # Make sure nginx is proxifying Kibana requests
   - >
     curl -s http://localhost:80/app/kibana
-    | grep -q 'KIBANA_VERSION'
+    | grep -q 'the kibana you know and love'
     && (echo 'Proxy to Kibana: pass' && exit 0)
     || (echo 'Proxy to Kibana: fail' && exit 1)
