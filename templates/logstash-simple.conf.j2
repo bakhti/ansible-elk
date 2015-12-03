@@ -1,5 +1,5 @@
 input { stdin { } }
 output {
-  elasticsearch { host => localhost }
+  elasticsearch { hosts => ["localhost:9200"] }
   stdout { codec => rubydebug }
 }
