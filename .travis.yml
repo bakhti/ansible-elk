@@ -36,6 +36,9 @@ script:
     && (echo 'Java is installed: pass' && exit 0)
     || (echo 'Java is installed: fail' && exit 1)
 
+  # Logstash configtest
+  - /opt/logstash/bin/logstash agent -f /etc/logstash/conf.d/ --configtest
+
   # Make sure Kibana is accessible
   - >
     curl -s http://localhost:80
