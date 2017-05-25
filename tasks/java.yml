@@ -22,5 +22,5 @@
 
 - name: Java apt packages
   apt: pkg={{ item }} update_cache=yes state=present
-  with_items: elk_java.{{ elk_java.flavor }}
+  with_items: "{{ elk_java[elk_java.flavor] }}"
   sudo: yes
