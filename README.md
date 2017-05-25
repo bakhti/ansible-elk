@@ -1,3 +1,5 @@
+## This role is outdated. Please use [the official one](https://github.com/elastic/ansible-elasticsearch)
+
 # Ansible Role: Elasticsearch ELK stack
 
 [![Build Status](https://travis-ci.org/bakhti/ansible-elk.svg?branch=master)](https://travis-ci.org/bakhti/ansible-elk) [![Ansible Galaxy](http://img.shields.io/badge/galaxy-bakhti.elk-660198.svg)](https://galaxy.ansible.com/list#/roles/1243)
