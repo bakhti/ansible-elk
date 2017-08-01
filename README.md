@@ -13,4 +13,4 @@ MIT
 
 ## Author Information
 
-This role was created in 2014 by [Bakhti Aripov](http://bakhti.github.io/).
+This role was created in 2014 by [Bakhtiyor Aripov](http://bakhti.github.io/).
